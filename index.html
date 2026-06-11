@@ -1,197 +1,195 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elizabethton SDA Church</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
 
     <script src="index.js" defer></script>
 
-    <script src="https://kit.fontawesome.com/7178c88896.js" crossorigin="anonymous"></script>
-</head>
-<body>
-
+    <script
+      src="https://kit.fontawesome.com/7178c88896.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <!-- MOBILE MENU -->
 
     <section id="landing">
+      <div class="menu">
+        <button class="btn_menu btn_menu-close" onclick="closeMenu()">
+          <i class="fas fa-times"></i>
+        </button>
 
-        <div class="menu">
-            <button class="btn_menu btn_menu-close" onclick="closeMenu()">
-                <i class="fas fa-times"></i>
-            </button>
+        <div class="menu_links">
+          <a class="menu_link" href="#about">About</a>
+          <a class="menu_link" href="#services">Services</a>
+          <a class="menu_link" href="#visit">Visit Us</a>
+          <a class="menu_link menu_link-primary" href="#contact"> Contact </a>
+        </div>
+      </div>
 
-            <div class="menu_links">
-                <a class="menu_link" href="#about">About</a>
-                <a class="menu_link" href="#services">Services</a>
-                <a class="menu_link" href="#visit">Visit Us</a>
-                <a class="menu_link menu_link-primary" href="#contact">
-                    Contact
-                </a>
-            </div>
+      <div class="overlay" onclick="closeMenu()"></div>
+
+      <!-- NAV -->
+
+      <nav class="nav">
+        <div class="nav_container row">
+          <div class="nav_logo">
+            <img src="assets/logo.png" alt="Church Logo" />
+          </div>
+
+          <div class="nav_links">
+            <a class="nav_link" href="#about">About</a>
+            <a class="nav_link" href="#services">Services</a>
+            <a class="nav_link" href="#visit">Visit Us</a>
+            <a class="nav_link sign-up" href="#contact"> Contact </a>
+          </div>
+
+          <button class="btn_menu" onclick="openMenu()">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+
+      <!-- HERO -->
+
+      <header class="hero">
+        <div class="hero_slider">
+          <div class="hero_slide active">
+            <img src="assets/hero1.png" alt="Church Worship" />
+          </div>
+
+          <div class="hero_slide">
+            <img src="assets/hero2.png" alt="Church Community" />
+          </div>
+
+          <div class="hero_slide">
+            <img src="assets/hero3.png" alt="Bible Study" />
+          </div>
         </div>
 
-        <div class="overlay" onclick="closeMenu()"></div>
+        <div class="hero_overlay"></div>
 
-        <!-- NAV -->
+        <div class="hero_content">
+          <span class="hero_subtitle"> Seventh-day Adventist Church </span>
 
-        <nav class="nav">
-            <div class="nav_container row">
+          <h1>A Place To Grow In Faith</h1>
 
-                <div class="nav_logo">
-                    <img src="assets/logo.png" alt="Church Logo">
-                </div>
+          <p>
+            Join a welcoming community centered on Jesus Christ, Biblical truth,
+            and serving our neighbors with love.
+          </p>
 
-                <div class="nav_links">
-                    <a class="nav_link" href="#about">About</a>
-                    <a class="nav_link" href="#services">Services</a>
-                    <a class="nav_link" href="#visit">Visit Us</a>
-                    <a class="nav_link sign-up" href="#contact">
-                        Contact
-                    </a>
-                </div>
+          <div class="hero_buttons">
+            <a href="#visit" class="btn"> Plan Your Visit </a>
 
-                <button class="btn_menu" onclick="openMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
+            <a href="#about" class="btn btn_secondary"> Learn More </a>
+          </div>
+        </div>
 
-            </div>
-        </nav>
+        <button class="hero_arrow hero_prev">
+          <i class="fas fa-chevron-left"></i>
+        </button>
 
-        <!-- HERO -->
+        <button class="hero_arrow hero_next">
+          <i class="fas fa-chevron-right"></i>
+        </button>
 
-        <header class="hero">
-            <div class="hero_content">
-
-                <h1>
-                    Welcome to Elizabethton SDA Church
-                </h1>
-
-                <p>
-                    A Christ-centered community growing in faith,
-                    serving others, and sharing hope.
-                </p>
-
-                <div class="hero_buttons">
-                    <a href="#visit" class="btn">
-                        Plan Your Visit
-                    </a>
-
-                    <a href="#about" class="btn btn_secondary">
-                        Learn More
-                    </a>
-                </div>
-
-            </div>
-        </header>
-
+        <div class="hero_dots">
+          <span class="hero_dot active"></span>
+          <span class="hero_dot"></span>
+          <span class="hero_dot"></span>
+        </div>
+      </header>
     </section>
 
     <!-- ABOUT -->
 
     <section id="about" class="section">
-        <div class="row">
-            <h2>About Us</h2>
+      <div class="row">
+        <h2>About Us</h2>
 
-            <p>
-                We are a Seventh-day Adventist church plant dedicated
-                to helping people know Jesus and experience authentic
-                Christian community.
-            </p>
-        </div>
+        <p>
+          We are a Seventh-day Adventist church plant dedicated to helping
+          people know Jesus and experience authentic Christian community.
+        </p>
+      </div>
     </section>
 
     <!-- SERVICES -->
 
     <section id="services" class="section section_gray">
-        <div class="row">
-            <h2>Service Times</h2>
+      <div class="row">
+        <h2>Service Times</h2>
 
-            <div class="service_card">
-                <h3>Sabbath School</h3>
-                <p>9:30 AM</p>
-            </div>
-
-            <div class="service_card">
-                <h3>Worship Service</h3>
-                <p>11:00 AM</p>
-            </div>
+        <div class="service_card">
+          <h3>Sabbath School</h3>
+          <p>9:30 AM</p>
         </div>
+
+        <div class="service_card">
+          <h3>Worship Service</h3>
+          <p>11:00 AM</p>
+        </div>
+      </div>
     </section>
 
     <!-- VISIT -->
 
     <section id="visit" class="section">
-        <div class="row">
-            <h2>Visit Us</h2>
+      <div class="row">
+        <h2>Visit Us</h2>
 
-            <p>
-                We'd love to meet you. Join us this Sabbath and
-                experience a welcoming church family.
-            </p>
+        <p>
+          We'd love to meet you. Join us this Sabbath and experience a welcoming
+          church family.
+        </p>
 
-            <a href="#" class="btn">
-                Get Directions
-            </a>
-        </div>
+        <a href="#" class="btn"> Get Directions </a>
+      </div>
     </section>
 
     <!-- CONTACT -->
 
     <section id="contact" class="section section_gray">
-        <div class="row">
-            <h2>Contact Us</h2>
+      <div class="row">
+        <h2>Contact Us</h2>
 
-            <p>
-                Have questions? Reach out and we'd be happy to help.
-            </p>
+        <p>Have questions? Reach out and we'd be happy to help.</p>
 
-            <a href="mailto:info@elizabethtonsda.org" class="btn">
-                Email Us
-            </a>
-        </div>
+        <a href="mailto:info@elizabethtonsda.org" class="btn"> Email Us </a>
+      </div>
     </section>
 
     <!-- FOOTER -->
 
     <footer>
+      <div class="footer_container">
+        <img src="assets/logo.png" alt="Church Logo" />
 
-        <div class="footer_container">
+        <h3>Elizabethton SDA Church</h3>
 
-            <img
-                src="assets/logo.png"
-                alt="Church Logo">
+        <p>Sharing hope. Growing faith. Serving our community.</p>
 
-            <h3>Elizabethton SDA Church</h3>
+        <div class="footer_socials">
+          <a href="#">
+            <i class="fab fa-facebook-f"></i>
+          </a>
 
-            <p>
-                Sharing hope. Growing faith. Serving our community.
-            </p>
+          <a href="tel:4230000000">
+            <i class="fas fa-phone"></i>
+          </a>
 
-            <div class="footer_socials">
-
-                <a href="#">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-
-                <a href="tel:4230000000">
-                    <i class="fas fa-phone"></i>
-                </a>
-
-                <a href="mailto:info@elizabethtonsda.org">
-                    <i class="fas fa-envelope"></i>
-                </a>
-
-            </div>
-
-            <p>
-                © 2026 Elizabethton SDA Church. All Rights Reserved.
-            </p>
-
+          <a href="mailto:info@elizabethtonsda.org">
+            <i class="fas fa-envelope"></i>
+          </a>
         </div>
 
+        <p>© 2026 Elizabethton SDA Church. All Rights Reserved.</p>
+      </div>
     </footer>
-
-</body>
+  </body>
 </html>
