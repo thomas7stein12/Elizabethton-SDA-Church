@@ -1,1 +1,0 @@
-# Elizabethton-SDA-Church

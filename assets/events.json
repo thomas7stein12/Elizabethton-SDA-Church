@@ -1,0 +1,25 @@
+[
+  {
+    "title": "Monday Evening Meeting",
+    "time": "6:00 PM",
+    "location": "Johnson City Library",
+    "type": "meeting",
+    "repeat": "weekly",
+    "dayOfWeek": 1
+  },
+  {
+    "title": "Sabbath Worship",
+    "time": "11:00 AM",
+    "location": "Community Center",
+    "type": "worship",
+    "repeat": "weekly",
+    "dayOfWeek": 6
+  },
+  {
+    "date": "2026-06-25",
+    "title": "Special Prayer Night",
+    "time": "7:00 PM",
+    "location": "Smith Home",
+    "type": "prayer"
+  }
+]

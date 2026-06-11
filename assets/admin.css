@@ -1,0 +1,39 @@
+body {
+  font-family: Arial;
+  padding: 40px;
+  background: #f5f5f5;
+}
+
+.admin_container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+}
+
+.form_card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input, select {
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
+  background: #17593f;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.event_item {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}

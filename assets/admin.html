@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Church Admin</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="admin.js" defer></script>
+</head>
+<body>
+
+  <h1>Church Event Admin Panel</h1>
+
+  <div class="admin_container">
+
+    <!-- FORM -->
+    <div class="form_card">
+
+      <input id="title" placeholder="Event Title">
+
+      <input id="date" type="date">
+
+      <input id="time" placeholder="Time (e.g. 6:00 PM)">
+
+      <input id="location" placeholder="Location">
+
+      <select id="type">
+        <option value="meeting">Meeting</option>
+        <option value="worship">Worship</option>
+        <option value="prayer">Prayer</option>
+        <option value="fellowship">Fellowship</option>
+      </select>
+
+      <label>
+        <input type="checkbox" id="repeatWeekly">
+        Repeat Weekly
+      </label>
+
+      <select id="dayOfWeek">
+        <option value="0">Sunday</option>
+        <option value="1">Monday</option>
+        <option value="2">Tuesday</option>
+        <option value="3">Wednesday</option>
+        <option value="4">Thursday</option>
+        <option value="5">Friday</option>
+        <option value="6">Saturday</option>
+      </select>
+
+      <button onclick="addEvent()">Add Event</button>
+
+    </div>
+
+    <!-- LIST -->
+    <div id="eventList"></div>
+
+  </div>
+
+</body>
+</html>
