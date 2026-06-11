@@ -1,7 +1,11 @@
 const supabaseUrl = "https://wibusgniyyzvsbqknqlf.supabase.co";
-const supabaseKey = "wibusgniyyzvsbqknqlf";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndpYnVzZ25peXl6dnNicWtucWxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExODY1ODMsImV4cCI6MjA5Njc2MjU4M30.sWhho1HiltfWUMzq_GFDSgY6faftb2K24pCZmc2TpGk";
 
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+// =====================
+// MOBILE MENU
+// =====================
 const menu = document.querySelector(".menu");
 const overlay = document.querySelector(".overlay");
 
@@ -15,8 +19,13 @@ function closeMenu() {
   overlay.classList.remove("overlay_open");
 }
 
+// =====================
+// CALENDAR ELEMENTS
+// =====================
 const calendar = document.getElementById("calendar");
 const monthYear = document.getElementById("monthYear");
+
+// Event colors
 const colors = {
   worship: "#FDC20F",
   meeting: "#17593F",
@@ -25,13 +34,17 @@ const colors = {
   outreach: "#7b3fc9",
 };
 
+// =====================
+// STATE
+// =====================
 let currentDate = new Date();
-
 let events = {};
 
+// =====================
+// LOAD EVENTS FROM SUPABASE
+// =====================
 async function loadEvents() {
-
-  const { data, error } = await supabase
+  const { data, error } = await supabaseClient
     .from("events")
     .select("*");
 
@@ -42,43 +55,30 @@ async function loadEvents() {
 
   events = {};
 
-  data.forEach(event => {
+  (data || []).forEach((event) => {
 
+    // ONE-TIME EVENTS
     if (event.date) {
       if (!events[event.date]) {
         events[event.date] = [];
       }
-
-      events[event.date].push(event);
-    }
-  });
-
-  renderCalendar();
-}
-
-  events = {}; // reset
-
-  data.forEach((event) => {
-    // ONE-TIME EVENT
-    if (event.date) {
-      if (!events[event.date]) {
-        events[event.date] = [];
-      }
-
       events[event.date].push(event);
     }
 
-    // REPEATING WEEKLY EVENT
+    // REPEATING WEEKLY EVENTS
     if (event.repeat === "weekly") {
+
       const year = currentDate.getFullYear();
       const month = currentDate.getMonth();
       const daysInMonth = new Date(year, month + 1, 0).getDate();
 
       for (let day = 1; day <= daysInMonth; day++) {
+
         const dateObj = new Date(year, month, day);
 
         if (dateObj.getDay() === event.dayOfWeek) {
-          const dateString = dateObj.toISOString().split("T")[0];
+
+          const dateString = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
           if (!events[dateString]) {
             events[dateString] = [];
@@ -91,8 +91,11 @@ async function loadEvents() {
   });
 
   renderCalendar();
+}
 
-
+// =====================
+// RENDER CALENDAR
+// =====================
 function renderCalendar() {
   calendar.innerHTML = "";
 
@@ -107,28 +110,29 @@ function renderCalendar() {
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
+  // Empty cells before first day
   for (let i = 0; i < firstDay; i++) {
     calendar.innerHTML += `<div class="day"></div>`;
   }
 
+  // Days
   for (let day = 1; day <= daysInMonth; day++) {
+
     const dateString = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
     let eventHTML = "";
 
     if (events[dateString]) {
       eventHTML = events[dateString]
-        .map(
-          (event) => `
+        .map((event) => `
           <div
             class="event"
             style="background:${colors[event.type] || "#666"}"
-            title="${event.time} | ${event.location}"
+            title="${event.time || ""} | ${event.location || ""}"
           >
             ${event.title}
           </div>
-        `,
-        )
+        `)
         .join("");
     }
 
@@ -141,6 +145,9 @@ function renderCalendar() {
   }
 }
 
+// =====================
+// NAVIGATION
+// =====================
 document.getElementById("prevMonth").addEventListener("click", () => {
   currentDate.setMonth(currentDate.getMonth() - 1);
   loadEvents();
@@ -151,4 +158,9 @@ document.getElementById("nextMonth").addEventListener("click", () => {
   loadEvents();
 });
 
-loadEvents();
+// =====================
+// START APP
+// =====================
+window.addEventListener("DOMContentLoaded", () => {
+  loadEvents();
+});

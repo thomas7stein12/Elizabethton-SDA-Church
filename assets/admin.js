@@ -1,14 +1,10 @@
-let events = JSON.parse(localStorage.getItem("churchEvents")) || [];
+const supabaseClient = window.supabase.createClient(
+  "https://wibusgniyyzvsbqknqlf.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndpYnVzZ25peXl6dnNicWtucWxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExODY1ODMsImV4cCI6MjA5Njc2MjU4M30.sWhho1HiltfWUMzq_GFDSgY6faftb2K24pCZmc2TpGk"
+);
 
-function saveEvents() {
-  localStorage.setItem("churchEvents", JSON.stringify(events));
-  renderList();
-}
-
-function addEvent() {
-
+async function addEvent() {
   const event = {
-    id: Date.now(),
     title: document.getElementById("title").value,
     date: document.getElementById("date").value,
     time: document.getElementById("time").value,
@@ -18,34 +14,28 @@ function addEvent() {
     dayOfWeek: parseInt(document.getElementById("dayOfWeek").value)
   };
 
-  events.push(event);
-  saveEvents();
+  const { data, error } = await supabaseClient
+    .from("events")
+    .insert([event]);
+
+  if (error) {
+    console.error("Error adding event:", error);
+    alert("Failed to add event");
+    return;
+  }
+
+  alert("Event added successfully!");
+
+  clearForm();
 }
 
-function deleteEvent(id) {
-  events = events.filter(e => e.id !== id);
-  saveEvents();
+function clearForm() {
+  document.getElementById("title").value = "";
+  document.getElementById("date").value = "";
+  document.getElementById("time").value = "";
+  document.getElementById("location").value = "";
 }
 
-function renderList() {
-
-  const list = document.getElementById("eventList");
-  list.innerHTML = "";
-
-  events.forEach(event => {
-
-    list.innerHTML += `
-      <div class="event_item">
-        <strong>${event.title}</strong><br>
-        ${event.date || "Repeats Weekly"}<br>
-        ${event.time} - ${event.location}
-
-        <button onclick="deleteEvent(${event.id})">
-          Delete
-        </button>
-      </div>
-    `;
-  });
-}
-
-renderList();
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("addBtn").addEventListener("click", addEvent);
+});

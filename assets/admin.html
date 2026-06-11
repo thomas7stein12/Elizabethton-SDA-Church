@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Church Admin</title>
-  <link rel="stylesheet" href="admin.css">
-  <script src="admin.js" defer></script>
+  <link rel="stylesheet" href="./admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./admin.js" defer></script>
 </head>
 <body>
 
@@ -45,7 +46,7 @@
         <option value="6">Saturday</option>
       </select>
 
-      <button onclick="addEvent()">Add Event</button>
+      <button id="addBtn">Add Event</button>
 
     </div>
 
