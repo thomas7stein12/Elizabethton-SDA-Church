@@ -11,6 +11,8 @@ function closeMenu() {
     overlay.classList.remove("overlay_open");
 }
 
+// HERO
+
 const slides = document.querySelectorAll(".hero_slide");
 const dots = document.querySelectorAll(".hero_dot");
 
@@ -67,3 +69,32 @@ dots.forEach((dot, index) => {
 });
 
 setInterval(nextSlide, 6000);
+
+// CONTACT CARD \/
+
+const contactModal = document.getElementById("contactModal");
+const closeContact = document.getElementById("closeContact");
+
+// OPEN
+function openContact() {
+  contactModal.classList.add("show");
+}
+
+// CLOSE
+function closeContactModal() {
+  contactModal.classList.remove("show");
+}
+
+// close button
+if (closeContact) {
+  closeContact.addEventListener("click", closeContactModal);
+}
+
+// click outside card closes it
+if (contactModal) {
+  contactModal.addEventListener("click", (e) => {
+    if (e.target === contactModal) {
+      closeContactModal();
+    }
+  });
+}

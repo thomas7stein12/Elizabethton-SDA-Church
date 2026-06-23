@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Elizabethton SDA Church</title>
 
-    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="styles.css" />
     <script src="index.js" defer></script>
 
     <script
@@ -23,10 +23,16 @@
         </button>
 
         <div class="menu_links">
-          <a class="menu_link" href="#about">About</a>
+          <a class="menu_link" href="./about.html">About</a>
           <a class="menu_link" href="./calendar.html">Calendar</a>
           <a class="menu_link" href="#visit">Visit Us</a>
-          <a class="menu_link menu_link-primary" href="#contact"> Contact </a>
+          <a
+            class="menu_link menu_link-primary"
+            href="#"
+            onclick="openContact()"
+          >
+            Contact
+          </a>
         </div>
       </div>
 
@@ -41,10 +47,12 @@
           </div>
 
           <div class="nav_links">
-            <a class="nav_link" href="#about">About</a>
+            <a class="nav_link" href="./about.html">About</a>
             <a class="nav_link" href="./calendar.html">Calendar</a>
             <a class="nav_link" href="#visit">Visit Us</a>
-            <a class="nav_link sign-up" href="#contact"> Contact </a>
+            <a class="nav_link sign-up" href="#" onclick="openContact()">
+              Contact
+            </a>
           </div>
 
           <button class="btn_menu" onclick="openMenu()">
@@ -83,9 +91,13 @@
           </p>
 
           <div class="hero_buttons">
-            <a href="#visit" class="btn"> Plan Your Visit </a>
+            <a href="#" class="btn" onclick="openContact()">
+              Plan Your Visit
+            </a>
 
-            <a href="#about" class="btn btn_secondary"> Learn More </a>
+            <a href="./about.html" class="btn btn_secondary">
+              Learn More
+            </a>
           </div>
         </div>
 
@@ -107,59 +119,186 @@
 
     <!-- ABOUT -->
 
-    <section id="about" class="section">
+    <section id="about" class="about_section">
       <div class="row">
-        <h2>About Us</h2>
+        <div class="about_container">
+          <div class="about_content">
+            <span class="about_badge">Who We Are</span>
 
-        <p>
-          We are a Seventh-day Adventist church plant dedicated to helping
-          people know Jesus and experience authentic Christian community.
-        </p>
+            <h2>About Our Church</h2>
+
+            <p class="about_text">
+              We are a Seventh-day Adventist church plant dedicated to helping
+              people know Jesus, grow in Scripture, and experience authentic
+              Christian community. Our goal is simple—follow Christ, love
+              people, and serve our community.
+            </p>
+
+            <div class="about_actions">
+              <a href="./about.html" class="btn">Learn More About Us</a>
+            </div>
+          </div>
+
+          <div class="about_highlight">
+            <div class="about_card">
+              <h3>Rooted in Scripture</h3>
+              <p>We believe the Bible is the foundation for life and faith.</p>
+            </div>
+
+            <div class="about_card">
+              <h3>Community First</h3>
+              <p>Church is more than a service—it’s a family.</p>
+            </div>
+
+            <div class="about_card">
+              <h3>Christ Centered</h3>
+              <p>Everything we do points back to Jesus.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- SERVICES -->
 
-    <section id="services" class="section section_gray">
+    <section id="services" class="services_section section_gray">
       <div class="row">
-        <h2>Service Times</h2>
-
-        <div class="service_card">
-          <h3>Sabbath School</h3>
-          <p>9:30 AM</p>
+        <div class="services_header">
+          <span class="services_badge">Weekly Gatherings</span>
+          <h2>Service Times</h2>
+          <p>
+            Join us each Sabbath as we worship, study Scripture, and grow
+            together in Christ.
+          </p>
         </div>
 
-        <div class="service_card">
-          <h3>Worship Service</h3>
-          <p>11:00 AM</p>
+        <div class="services_grid">
+          <div class="service_card">
+            <div class="service_icon">📖</div>
+            <div class="service_info">
+              <h3>Sabbath School</h3>
+              <p class="service_time">9:30 AM</p>
+              <span class="service_meta">Bible Study & Discussion</span>
+            </div>
+          </div>
+
+          <div class="service_card">
+            <div class="service_icon">⛪</div>
+            <div class="service_info">
+              <h3>Worship Service</h3>
+              <p class="service_time">11:00 AM</p>
+              <span class="service_meta">Main Worship Gathering</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- VISIT -->
 
-    <section id="visit" class="section">
-      <div class="row">
-        <h2>Visit Us</h2>
+    <section id="visit" class="visit_section">
+      <div class="visit_container">
+        <div class="visit_card">
+          <div class="visit_badge">Weekly Gathering</div>
 
-        <p>
-          We'd love to meet you. Join us this Sabbath and experience a welcoming
-          church family.
-        </p>
+          <h2>Join Us This Sabbath</h2>
 
-        <a href="#" class="btn"> Get Directions </a>
+          <p class="visit_text">
+            We are currently a church plant and meet in different locations as
+            we grow. Each Sabbath is a chance to experience authentic community,
+            worship, and Bible-centered teaching.
+          </p>
+
+          <div class="visit_highlights">
+            <div class="visit_item">
+              <span class="icon">⛪</span>
+              <div>
+                <h4>Flexible Location</h4>
+                <p>We meet in rotating venues as we grow.</p>
+              </div>
+            </div>
+
+            <div class="visit_item">
+              <span class="icon">🤝</span>
+              <div>
+                <h4>Welcoming Community</h4>
+                <p>No pressure, just genuine people and faith.</p>
+              </div>
+            </div>
+
+            <div class="visit_item">
+              <span class="icon">📖</span>
+              <div>
+                <h4>Bible-Centered Worship</h4>
+                <p>Christ-focused teaching every Sabbath.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="visit_actions">
+            <a href="#" class="btn btn_primary" onclick="openContact()">
+              Get This Week’s Location
+            </a>
+
+            <a href="#services" class="btn btn_secondary"> Service Times </a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- CONTACT -->
 
-    <section id="contact" class="section section_gray">
-      <div class="row">
-        <h2>Contact Us</h2>
+    <section id="contact" class="contact_section">
+      <div class="contact_container">
+        <div class="contact_page-card">
+          <div class="contact_badge">Get In Touch</div>
 
-        <p>Have questions? Reach out and we'd be happy to help.</p>
+          <h2>We’d Love To Hear From You</h2>
 
-        <a href="mailto:info@elizabethtonsda.org" class="btn"> Email Us </a>
+          <p class="contact_text">
+            Whether you have questions about our church, want to visit for the
+            first time, or need prayer, we’re here for you.
+          </p>
+
+          <div class="contact_grid">
+            <div class="contact_item">
+              <div class="icon">✉️</div>
+              <div>
+                <h4>Email</h4>
+                <p>drstephendexter@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="contact_item">
+              <div class="icon">🙏</div>
+              <div>
+                <h4>Prayer Requests</h4>
+                <p>We’re happy to pray for you anytime</p>
+              </div>
+            </div>
+
+            <div class="contact_item">
+              <div class="icon">🤝</div>
+              <div>
+                <h4>Community</h4>
+                <p>Connect with our church family</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact_actions">
+            <button class="btn btn_primary" onclick="openContact()">
+              Send a Message
+            </button>
+
+            <a
+              href="mailto:drstephendexter@gmail.com"
+              class="btn btn_secondary"
+            >
+              Email Directly
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -174,15 +313,15 @@
         <p>Sharing hope. Growing faith. Serving our community.</p>
 
         <div class="footer_socials">
-          <a href="#">
+          <a href="#contact" onclick="openContact()">
             <i class="fab fa-facebook-f"></i>
           </a>
 
-          <a href="tel:4230000000">
+          <a href="#contact" onclick="openContact()">
             <i class="fas fa-phone"></i>
           </a>
 
-          <a href="mailto:info@elizabethtonsda.org">
+          <a href="#contact" onclick="openContact()">
             <i class="fas fa-envelope"></i>
           </a>
         </div>
@@ -190,5 +329,25 @@
         <p>© 2026 Elizabethton SDA Church. All Rights Reserved.</p>
       </div>
     </footer>
+    <!-- CONTACT CARD -->
+    <div class="contact_modal hidden" id="contactModal">
+      <div class="contact_card">
+        <button class="contact_close" id="closeContact">✕</button>
+
+        <h2>Contact Us</h2>
+
+        <p>We’d love to hear from you. Reach out anytime.</p>
+
+        <a href="mailto:drstephendexter@gmail.com" class="contact_link">
+          📧 Email Us
+        </a>
+
+        <a href="tel:+14234296524" class="contact_link"> 📞 Call Us </a>
+
+        <a href="#contact" class="contact_link" onclick="openContact()">
+          <i class="fab fa-facebook-f"></i>Facebook
+        </a>
+      </div>
+    </div>
   </body>
 </html>

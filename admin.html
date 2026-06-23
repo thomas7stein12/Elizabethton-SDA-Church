@@ -1,59 +1,114 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Church Admin</title>
-  <link rel="stylesheet" href="admin.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="admin.js" defer></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Church Admin</title>
+    <link rel="stylesheet" href="admin.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="admin.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/7178c88896.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- MOBILE MENU -->
 
-  <h1>Church Event Admin Panel</h1>
+    <section id="landing">
+      <div class="menu">
+        <button class="btn_menu-close" onclick="closeMenu()">
+          <i class="fas fa-times"></i>
+        </button>
 
-  <div class="admin_container">
+        <div class="menu_links">
+          <span id="mobileAdminStatus" class="admin_status hidden">🔒 Admin Mode</span>
+          <button id="mobileLogoutBtn" class="logout_btn hidden">Logout</button>
+          <a class="menu_link menu_link-primary" href="./calendar.html"> Back </a>
+        </div>
+      </div>
 
-    <!-- FORM -->
-    <div class="form_card">
+      <div class="overlay" onclick="closeMenu()"></div>
 
-      <input id="title" placeholder="Event Title">
+      <!-- NAV -->
 
-      <input id="date" type="date">
+      <nav class="nav">
+        <div class="nav_container row">
+          <div class="nav_logo">
+            <img src="./assets/logo.png" alt="Church Logo" />
+          </div>
 
-      <input id="time" placeholder="Time (e.g. 6:00 PM)">
+          <div class="nav_links">
+            <span id="adminStatus" class="admin_status hidden">🔒 Admin Mode</span>
+            <button id="logoutBtn" class="logout_btn hidden">Logout</button>
+            <a class="nav_link sign-up" href="./calendar.html"> Back </a>
+          </div>
 
-      <input id="location" placeholder="Location">
+          <button class="btn_menu" onclick="openMenu()">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    <div id="loginScreen" class="login_screen">
+      <h2>Admin Login</h2>
 
-      <select id="type">
-        <option value="meeting">Meeting</option>
-        <option value="worship">Worship</option>
-        <option value="prayer">Prayer</option>
-        <option value="fellowship">Fellowship</option>
-      </select>
+      <input id="passwordInput" type="password" placeholder="Enter password" />
+      <button onclick="checkPassword()">Login</button>
 
-      <label>
-        <input type="checkbox" id="repeatWeekly">
-        Repeat Weekly
-      </label>
-
-      <select id="dayOfWeek">
-        <option value="0">Sunday</option>
-        <option value="1">Monday</option>
-        <option value="2">Tuesday</option>
-        <option value="3">Wednesday</option>
-        <option value="4">Thursday</option>
-        <option value="5">Friday</option>
-        <option value="6">Saturday</option>
-      </select>
-
-      <button id="addBtn">Add Event</button>
-
+      <p id="loginError" style="color: red"></p>
     </div>
+    <div id="adminPanel" style="display: none">
+    <h1>Church Event Admin Panel</h1>
 
-    <!-- LIST -->
-    <div id="eventList"></div>
+    <div class="admin_container">
+      <!-- FORM -->
+      <div class="form_card">
+        <input id="title" placeholder="Event Title" />
 
+        <input id="date" type="date" />
+
+        <input id="time" placeholder="Time (e.g. 6:00 PM)" />
+
+        <input id="location" placeholder="Location" />
+
+        <select id="type">
+          <option value="meeting">Meeting</option>
+          <option value="worship">Worship</option>
+          <option value="prayer">Prayer</option>
+          <option value="fellowship">Fellowship</option>
+        </select>
+
+        <label class="checkbox">
+          <span class="repeat">Repeat Weekly</span>
+          <input type="checkbox" id="repeatWeekly" />
+        </label>
+
+        <select id="dayOfWeek">
+          <option value="0">Sunday</option>
+          <option value="1">Monday</option>
+          <option value="2">Tuesday</option>
+          <option value="3">Wednesday</option>
+          <option value="4">Thursday</option>
+          <option value="5">Friday</option>
+          <option value="6">Saturday</option>
+        </select>
+
+        <button id="addBtn">Add Event</button>
+      </div>
+      <div class="events_panel">
+        <h2>Current Events</h2>
+      <!-- LIST -->
+      <div id="eventList"></div>
+    </div>
   </div>
+  <h2>Calendar Preview</h2>
 
-</body>
+  <iframe
+    id="calendarPreview"
+    src="./calendar-embed.html"
+    width="100%"
+    height="1400"
+    style="border:none;border-radius:12px;"
+  ></iframe>
+  </section>
+  </body>
 </html>
