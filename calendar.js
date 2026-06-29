@@ -20,27 +20,35 @@ function closeMenu() {
   overlay.classList.remove("overlay_open");
 }
 
-// =====================
-// CALENDAR ELEMENTS
-// =====================
+// HERO
 
 const slides = document.querySelectorAll(".hero_slide");
-const dots = document.querySelectorAll(".hero_dot");
-
-const nextBtn = document.querySelector(".hero_next");
-const prevBtn = document.querySelector(".hero_prev");
+const dotsContainer = document.querySelector(".hero_dots");
 
 let currentSlide = 0;
 
+// Create a dot for every slide
+slides.forEach((_, index) => {
+    const dot = document.createElement("span");
+    dot.classList.add("hero_dot");
+
+    if (index === 0) {
+        dot.classList.add("active");
+    }
+
+    dot.addEventListener("click", () => {
+        showSlide(index);
+    });
+
+    dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll(".hero_dot");
+
 function showSlide(index) {
 
-    slides.forEach(slide =>
-        slide.classList.remove("active")
-    );
-
-    dots.forEach(dot =>
-        dot.classList.remove("active")
-    );
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.remove("active"));
 
     slides[index].classList.add("active");
     dots[index].classList.add("active");
@@ -49,37 +57,58 @@ function showSlide(index) {
 }
 
 function nextSlide() {
+    currentSlide++;
 
-    let next = currentSlide + 1;
-
-    if (next >= slides.length) {
-        next = 0;
+    if (currentSlide >= slides.length) {
+        currentSlide = 0;
     }
 
-    showSlide(next);
+    showSlide(currentSlide);
 }
 
 function prevSlide() {
+    currentSlide--;
 
-    let prev = currentSlide - 1;
-
-    if (prev < 0) {
-        prev = slides.length - 1;
+    if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
     }
 
-    showSlide(prev);
+    showSlide(currentSlide);
 }
 
-nextBtn.addEventListener("click", nextSlide);
-prevBtn.addEventListener("click", prevSlide);
+document.querySelector(".hero_next").addEventListener("click", nextSlide);
+document.querySelector(".hero_prev").addEventListener("click", prevSlide);
 
-dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-        showSlide(index);
-    });
+let interval = setInterval(nextSlide, 6000);
+
+document.querySelector(".hero").addEventListener("mouseenter", () => {
+    clearInterval(interval);
 });
 
-setInterval(nextSlide, 6000);
+document.querySelector(".hero").addEventListener("mouseleave", () => {
+    interval = setInterval(nextSlide, 6000);
+});
+
+let startX = 0;
+
+const hero = document.querySelector(".hero");
+
+hero.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+});
+
+hero.addEventListener("touchend", e => {
+
+    let endX = e.changedTouches[0].clientX;
+
+    if (startX - endX > 50) {
+        nextSlide();
+    }
+
+    if (endX - startX > 50) {
+        prevSlide();
+    }
+});
 
 // =====================
 // CALENDAR ELEMENTS

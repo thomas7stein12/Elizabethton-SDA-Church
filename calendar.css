@@ -105,9 +105,7 @@ p {
   cursor: pointer;
 }
 
-
 @media (max-width: 768px) {
-
   .nav_links {
     display: none;
   }
@@ -287,7 +285,8 @@ p {
   z-index: 10;
 }
 
-button, a.btn {
+button,
+a.btn {
   cursor: pointer;
 }
 
@@ -330,11 +329,110 @@ button, a.btn {
   background: white;
   padding: 30px;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .highlight {
   border-left: 4px solid #17593f;
+}
+
+/* FEATURED WORSHIP */
+
+.featured_worship {
+  padding: 120px 24px;
+  background: #f8f8f8;
+}
+
+.featured_header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+.section_subtitle {
+  color: #17593f;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.featured_header h2 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  margin-bottom: 24px;
+}
+
+.featured_header p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.featured_card {
+  background: white;
+
+  border-radius: 28px;
+
+  overflow: hidden;
+
+  display: grid;
+
+  grid-template-columns: 1.2fr 1fr;
+
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+
+  transition: 0.4s;
+}
+
+.featured_card:hover {
+  transform: translateY(-8px);
+
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.12);
+}
+
+.video_wrapper {
+  position: relative;
+
+  padding-top: 56.25%;
+
+  height: 100%;
+}
+
+.video_wrapper iframe {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  border: none;
+}
+
+.video_content {
+  padding: 60px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.video_content h3 {
+  font-size: 2rem;
+
+  margin-bottom: 24px;
+}
+
+.video_content p {
+  color: #666;
+
+  line-height: 1.8;
+
+  margin-bottom: 40px;
 }
 
 /* LEADERS */
@@ -348,12 +446,12 @@ button, a.btn {
 
 .person_card {
   background: white;
-  padding: 60px;           
+  padding: 60px;
   border-radius: 18px;
   text-align: center;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 
-  min-height: 280px;      
+  min-height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -398,7 +496,7 @@ button, a.btn {
   padding: 40px;
   text-align: center;
   margin-bottom: 40px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .event_label {
@@ -429,7 +527,7 @@ button, a.btn {
   background: white;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .calendar_header {
@@ -481,14 +579,14 @@ button, a.btn {
 }
 
 .day.today {
-  border: 2px solid #17593F;
+  border: 2px solid #17593f;
   background: rgba(23, 89, 63, 0.08);
   border-radius: 10px;
   position: relative;
 }
 
 .day.today .day_number {
-  background: #17593F;
+  background: #17593f;
   color: white;
   width: 26px;
   height: 26px;
@@ -499,7 +597,7 @@ button, a.btn {
   font-weight: bold;
 }
 
-@media(max-width:1000px) {
+@media (max-width: 1000px) {
   .person_card {
     padding: 30px;
     min-height: auto;
@@ -509,14 +607,14 @@ button, a.btn {
   }
 }
 
-@media(max-width:768px) {
+@media (max-width: 768px) {
   .day {
     min-height: 80px;
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
 
   .event {
-    font-size: .65rem;
+    font-size: 0.65rem;
   }
 }
 
@@ -529,7 +627,7 @@ button, a.btn {
 .event_modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -576,7 +674,7 @@ button, a.btn {
 .contact_modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -648,27 +746,23 @@ footer {
   margin: 0 auto;
 }
 
-
 .footer_container img {
   width: 180px;
   margin-bottom: 20px;
   opacity: 0.95;
 }
 
-
 .footer_container h3 {
   margin-bottom: 10px;
   font-size: 1.4rem;
 }
 
-
 .footer_container p {
-  color: rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.75);
   max-width: 600px;
   margin: 10px auto;
   line-height: 1.6;
 }
-
 
 .footer_socials {
   margin: 28px 0;
@@ -688,7 +782,7 @@ footer {
   justify-content: center;
 
   border-radius: 50%;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
 
   transition: 0.25s ease;
   text-decoration: none;
@@ -698,7 +792,6 @@ footer {
   background: #17593f;
   transform: translateY(-3px);
 }
-
 
 footer p:last-child {
   margin-top: 30px;
