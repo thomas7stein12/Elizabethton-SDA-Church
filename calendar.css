@@ -616,6 +616,18 @@ a.btn {
   .event {
     font-size: 0.65rem;
   }
+
+  .featured_card {
+        grid-template-columns: 1fr;
+    }
+
+    .video_wrapper {
+        min-height: 300px;
+    }
+
+    .video_content {
+        padding: 40px 28px;
+    }
 }
 
 /* EVENT MODAL */
