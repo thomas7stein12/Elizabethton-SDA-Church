@@ -607,7 +607,7 @@ a.btn {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .day {
     min-height: 80px;
     font-size: 0.75rem;
