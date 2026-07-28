@@ -23,7 +23,7 @@
         <div class="menu_links">
           <span id="mobileAdminStatus" class="admin_status hidden">🔒 Admin Mode</span>
           <button id="mobileLogoutBtn" class="logout_btn hidden">Logout</button>
-          <a class="menu_link menu_link-primary" href="./calendar.html"> Back </a>
+          <a class="menu_link menu_link-primary" href="./index.html"> Back </a>
         </div>
       </div>
 
@@ -40,7 +40,7 @@
           <div class="nav_links">
             <span id="adminStatus" class="admin_status hidden">🔒 Admin Mode</span>
             <button id="logoutBtn" class="logout_btn hidden">Logout</button>
-            <a class="nav_link sign-up" href="./calendar.html"> Back </a>
+            <a class="nav_link sign-up" href="./index.html"> Back </a>
           </div>
 
           <button class="btn_menu" onclick="openMenu()">
@@ -57,6 +57,40 @@
       <p id="loginError" style="color: red"></p>
     </div>
     <div id="adminPanel" style="display: none">
+  </section>
+  <!-- GALLERY ADMIN -->
+<section class="gallery_admin">
+  <h2>Photo Gallery</h2>
+
+  <div class="gallery_upload_card">
+    <h3>Upload New Photo</h3>
+
+    <input
+      type="file"
+      id="galleryImage"
+      accept="image/*"
+    />
+
+    <input
+      type="text"
+      id="galleryCaption"
+      placeholder="Photo caption (optional)"
+    />
+
+    <button id="uploadGalleryBtn" onclick="uploadGalleryPhoto()">
+      Upload Photo
+    </button>
+
+    <p id="galleryUploadStatus"></p>
+  </div>
+
+  <div class="gallery_admin_list">
+    <h3>Current Photos</h3>
+
+    <div id="galleryAdminList"></div>
+  </div>
+</section>
+  <section>
     <h1>Church Event Admin Panel</h1>
 
     <div class="admin_container">

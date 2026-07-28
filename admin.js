@@ -48,6 +48,177 @@ function checkPassword() {
   }
 }
 
+// =====================
+// GALLERY ADMIN
+// =====================
+
+async function uploadGalleryPhoto() {
+
+  const fileInput = document.getElementById("galleryImage");
+  const captionInput = document.getElementById("galleryCaption");
+  const status = document.getElementById("galleryUploadStatus");
+
+  const file = fileInput.files[0];
+  const caption = captionInput.value.trim();
+
+  if (!file) {
+    alert("Please choose an image first.");
+    return;
+  }
+
+  status.textContent = "Uploading...";
+
+  // Create a unique filename
+  const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, "_")}`;
+
+  try {
+    // Upload image to Supabase Storage
+    const { error: uploadError } = await supabaseClient
+      .storage
+      .from("gallery")
+      .upload(fileName, file);
+
+    if (uploadError) {
+      console.error("Storage upload error:", uploadError);
+      status.textContent = "Upload failed.";
+      return;
+    }
+
+    // Get public URL
+    const { data: publicUrlData } = supabaseClient
+      .storage
+      .from("gallery")
+      .getPublicUrl(fileName);
+
+    const imageUrl = publicUrlData.publicUrl;
+
+    // Save image information to database
+    const { error: databaseError } = await supabaseClient
+      .from("gallery")
+      .insert([
+        {
+          img_url: imageUrl,
+          caption: caption || null,
+        },
+      ]);
+
+    if (databaseError) {
+      console.error("Database error:", databaseError);
+
+      // If database insert failed, remove uploaded file
+      await supabaseClient
+        .storage
+        .from("gallery")
+        .remove([fileName]);
+
+      status.textContent = "Failed to save photo.";
+      return;
+    }
+
+    status.textContent = "Photo uploaded successfully!";
+
+    // Clear form
+    fileInput.value = "";
+    captionInput.value = "";
+
+    // Reload gallery
+    loadGalleryAdmin();
+
+  } catch (error) {
+    console.error(error);
+    status.textContent = "Something went wrong.";
+  }
+}
+
+async function loadGalleryAdmin() {
+
+  const galleryList = document.getElementById("galleryAdminList");
+
+  if (!galleryList) return;
+
+  galleryList.innerHTML = "Loading photos...";
+
+  const { data, error } = await supabaseClient
+    .from("gallery")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("Gallery loading error:", error);
+    galleryList.innerHTML = "Failed to load gallery.";
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    galleryList.innerHTML = "<p>No photos uploaded yet.</p>";
+    return;
+  }
+
+  galleryList.innerHTML = data.map(photo => `
+    <div class="gallery_admin_item">
+
+      <img
+        src="${photo.img_url}"
+        alt="${photo.caption || "Church Photo"}"
+      >
+
+      <div class="gallery_admin_info">
+        <p>
+          ${photo.caption || "No caption"}
+        </p>
+
+        <button onclick="deleteGalleryPhoto('${photo.id}', '${photo.img_url}')">
+          Delete
+        </button>
+      </div>
+
+    </div>
+  `).join("");
+}
+
+async function deleteGalleryPhoto(id, imageUrl) {
+
+  if (!confirm("Are you sure you want to delete this photo?")) {
+    return;
+  }
+
+  try {
+
+    // Get the filename from the public URL
+    const storagePath = imageUrl.split("/storage/v1/object/public/gallery/")[1];
+
+    // Delete from Storage
+    if (storagePath) {
+      const { error: storageError } = await supabaseClient
+        .storage
+        .from("gallery")
+        .remove([decodeURIComponent(storagePath)]);
+
+      if (storageError) {
+        console.error("Storage delete error:", storageError);
+      }
+    }
+
+    // Delete from database
+    const { error: databaseError } = await supabaseClient
+      .from("gallery")
+      .delete()
+      .eq("id", id);
+
+    if (databaseError) {
+      console.error("Database delete error:", databaseError);
+      alert("Failed to delete photo.");
+      return;
+    }
+
+    loadGalleryAdmin();
+
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong while deleting the photo.");
+  }
+}
+
 async function addEvent() {
   const event = {
     title: document.getElementById("title").value,
@@ -111,6 +282,7 @@ window.addEventListener("DOMContentLoaded", () => {
     document.getElementById("adminPanel").style.display = "block";
 
     loadEventList();
+    loadGalleryAdmin();
   }
 
   updateAuthUI();
@@ -179,3 +351,4 @@ function refreshCalendarPreview() {
     frame.src = frame.src;
   }
 }
+
