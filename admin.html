@@ -49,17 +49,24 @@
         </div>
       </nav>
     <div id="loginScreen" class="login_screen">
-      <h2>Admin Login</h2>
+  <h2>Admin Login</h2>
 
-      <input id="passwordInput" type="password" placeholder="Enter password" />
-      <button onclick="checkPassword()">Login</button>
+  <input
+    id="passwordInput"
+    type="password"
+    placeholder="Enter password"
+  />
 
-      <p id="loginError" style="color: red"></p>
-    </div>
-    <div id="adminPanel" style="display: none">
-  </section>
+  <button onclick="checkPassword()">Login</button>
+
+  <p id="loginError" style="color: red"></p>
+</div>
+
+<!-- EVERYTHING BELOW HERE IS ADMIN ONLY -->
+<div id="adminPanel" style="display: none">
+
   <!-- GALLERY ADMIN -->
-<section class="gallery_admin">
+  <section class="gallery_admin">
   <h2>Photo Gallery</h2>
 
   <div class="gallery_upload_card">
